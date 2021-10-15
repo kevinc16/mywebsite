@@ -4,16 +4,19 @@
 set -e
 
 # build
-npm run build
+yarn build
 
 # navigate into the build output directory
-cd dist
+# cd dist
 
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
-echo 'www.kevinc16.me/' > CNAME
+mkdir /assets/a_windy_day
+cp -r ./assets/a_windy_day dist/assets/a_windy_day
 
-git init
+# git init
+cd dist
+git checkout gh-pages
 git add -A
 git commit -m 'deploy'
 
@@ -22,5 +25,6 @@ git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+git push
 
 cd -

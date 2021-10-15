@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-// import (OrbitControls) from "three/"
 
 /*
     Y
@@ -16,8 +15,8 @@ Z
 */
 
 import "./style.scss";
-// import { addModel } from "./model";
-import { Object3D, Vector3 } from "three";
+import { Vector3 } from "three";
+import { rotateAboutPoint } from "./util";
 
 // ============= globals =============
 const rotationRad = 0.0003;
@@ -44,50 +43,16 @@ function onMouseClick() {
   else desc.classList.add("hidden");
 }
 
-function resizeCanvasToDisplaySize() {
-  const canvas = renderer.domElement;
-  // look up the size the canvas is being displayed
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 
-  // adjust displayBuffer size to match
-  if (canvas.width !== width || canvas.height !== height) {
-    // you must pass false here or three.js sadly fights the browser
-    renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-
-    // update any render target sizes here
-  }
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-// obj - your object (THREE.Object3D or derived)
-// point - the point of rotation (THREE.Vector3)
-// axis - the axis of rotation (normalized THREE.Vector3)
-// theta - radian value of rotation
-// pointIsWorld - boolean indicating the point is in world coordinates (default = false)
-function rotateAboutPoint(
-  obj: Object3D,
-  point: Vector3,
-  axis: Vector3,
-  theta: number,
-  pointIsWorld?: boolean
-) {
-  pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld;
-
-  if (pointIsWorld) {
-    obj.parent!.localToWorld(obj.position); // compensate for world coordinate
-  }
-
-  obj.position.sub(point); // remove the offset
-  obj.position.applyAxisAngle(axis, theta); // rotate the POSITION
-  obj.position.add(point); // re-add the offset
-
-  if (pointIsWorld) {
-    obj.parent!.worldToLocal(obj.position); // undo world coordinates compensation
-  }
-
-  obj.rotateOnAxis(axis, theta); // rotate the OBJECT
+function onTransitionEnd(event: any) {
+  const element = event.target;
+  element.remove();
 }
 
 const mouse = new THREE.Vector2();
@@ -118,17 +83,23 @@ function main() {
 
   // ========================= model ==============================
 
-  const loader = new GLTFLoader();
+  const loadingManager = new THREE.LoadingManager(() => {
+    const loadingScreen = document.getElementById("loading-screen");
+    loadingScreen!.classList.add("fade-out");
+
+    // optional: remove loader from DOM via event listener
+    loadingScreen!.addEventListener("transitionend", onTransitionEnd);
+  });
+
+  const gltfloader = new GLTFLoader(loadingManager);
 
   let earth: THREE.Group;
-  loader.load(
+  gltfloader.load(
     "../assets/a_windy_day/scene.gltf",
     function (gltf) {
       gltf.scene.scale.set(2, 2, 2);
       earth = gltf.scene;
       scene.add(earth);
-
-      console.log(gltf);
 
       return gltf.scene;
     },
@@ -184,11 +155,12 @@ function main() {
 
     controls.update();
 
-    resizeCanvasToDisplaySize();
+    onWindowResize();
 
     renderer.render(scene, camera);
   }
   window.addEventListener("mousemove", onMouseMove, false);
+  window.addEventListener("resize", onWindowResize, false);
 
   animate();
 }
