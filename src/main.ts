@@ -16,7 +16,7 @@ Z
 */
 
 import "./style.scss";
-import { addModel } from "./model";
+// import { addModel } from "./model";
 import { Object3D, Vector3 } from "three";
 
 // ============= globals =============
@@ -140,7 +140,7 @@ function main() {
 
   document.addEventListener(
     "click",
-    (event) => {
+    () => {
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects([sphere]);
 
