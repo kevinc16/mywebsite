@@ -3,8 +3,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  // color: #2c3e50;
 }
+
+$backColor: #9370db;
+$textFont: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 
 canvas {
   outline: none;
@@ -20,9 +22,16 @@ body {
   height: 100%;
 }
 
-.desc {
+.hidden {
+  display: none;
+}
+
+.floating {
   position: fixed;
   color: white;
+}
+
+#desc {
   margin-top: 20px;
   left: 50%;
   transform: translate(-50%, 0);
@@ -32,19 +41,88 @@ body {
   font-style: italic;
 }
 
-.hidden {
-  display: none;
-}
-
-.cc {
+#cc {
   font-family: "Courier New", Courier, monospace;
-  position: fixed;
   color: white;
+  position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 0;
   font-size: 15px;
 }
+
+#aboutMe {
+  font-family: $textFont;
+  max-width: 20%;
+  padding: 10px;
+  margin: 20px;
+  right: 0;
+  font-size: 20px;
+
+  height: 50%;
+  background-color: $backColor;
+}
+
+#projects {
+  font-family: $textFont;
+  max-width: 20%;
+  padding: 10px;
+  margin: 20px;
+  left: 0;
+  font-size: 20px;
+
+  height: 50%;
+  background-color: $backColor;
+}
+
+#contact {
+  font-family: $textFont;
+  width: 20%;
+  padding: 10px;
+  margin: 20px;
+  right: 0;
+  bottom: 0;
+  font-size: 30px;
+
+  max-height: 20%;
+  background-color: $backColor;
+
+  .flex {
+    justify-content: space-evenly;
+    border-top: 1px solid white;
+    padding-top: 10px;
+  }
+
+  div {
+    font-size: 20px;
+    margin: 10px;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+// ============= links ===================
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: orange;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 
 // ============== loading screen =================
 

@@ -17,11 +17,13 @@ Z
 import "./style.scss";
 import { Vector3 } from "three";
 import { rotateAboutPoint } from "./util";
+import { onMouseClick } from "./mouseEvents";
 
 // ============= globals =============
 const rotationRad = 0.0003;
 
 // ============== init ===============
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -37,11 +39,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.domElement.className = "container-fluid";
 document.body.appendChild(renderer.domElement);
 
-function onMouseClick() {
-  const desc = document.getElementsByClassName("desc")[0];
-  if (desc.classList.contains("hidden")) desc.classList.remove("hidden");
-  else desc.classList.add("hidden");
-}
+// ============ functions ============
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -67,19 +65,22 @@ function onMouseMove(event: MouseEvent) {
 function main() {
   renderer.outputEncoding = THREE.sRGBEncoding;
 
-  camera.position.z = 5;
+  camera.position.z = 4.5;
+  camera.position.y = 1.5;
 
-  const geometry = new THREE.SphereGeometry(0.03);
-  const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  let geometry = new THREE.SphereGeometry(0.03);
+  let material = new THREE.MeshBasicMaterial({ color: 0xffffff });
   const sphere = new THREE.Mesh(geometry, material);
   sphere.position.set(0.2, 1.45, 1.4);
-  sphere.addEventListener("onclick", () => {
-    sphere.scale.set(1.5, 1.5, 1.5);
-  });
   scene.add(sphere);
 
-  const ambientLight = new THREE.AmbientLight("white");
-  scene.add(ambientLight);
+  geometry = new THREE.SphereGeometry(2);
+  material = new THREE.MeshBasicMaterial({ color: 0x030303 });
+  const largeSphere = new THREE.Mesh(geometry, material);
+  scene.add(largeSphere);
+
+  // const ambientLight = new THREE.AmbientLight("white");
+  // scene.add(ambientLight);
 
   // ========================= model ==============================
 
@@ -119,6 +120,7 @@ function main() {
         (intersectedEl) => intersectedEl.object.uuid === sphere.uuid
       );
       console.log(intersects);
+      intersects[0].object.scale.set(1.5, 1.5, 1.5);
 
       if (isIntersected) {
         onMouseClick();
@@ -127,10 +129,12 @@ function main() {
     false
   );
 
-  // ======================= orbit controls ============================
+  // ================ orbit controls ====================
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableZoom = false;
+
+  // ============== animate ================
 
   function animate() {
     requestAnimationFrame(animate);
@@ -142,9 +146,12 @@ function main() {
     const intersects: any = raycaster.intersectObjects([sphere]);
 
     sphere.material.color.set("white");
+    sphere.scale.set(1, 1, 1);
     for (let i = 0; i < intersects.length; i++) {
-      intersects[i].object.material.color.set(0xff0000);
+      intersects[i].object.material.color.set(0xff00ff);
+      intersects[i].object.scale.set(1.2, 1.2, 1.2);
     }
+
     rotateAboutPoint(
       sphere,
       new Vector3(0, 0, 0),
@@ -164,5 +171,7 @@ function main() {
 
   animate();
 }
+
+// ===== main ======
 
 main();
