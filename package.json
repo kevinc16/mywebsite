@@ -5,8 +5,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "deploy": "yarn build && gh-pages -d dist",
-    "assets": "cp -r ./assets/a_windy_day dist/assets/a_windy_day"
+    "deploy": "yarn build && yarn assets && yarn fonts && gh-pages -d dist",
+    "assets": "cp -r ./assets dist/assets",
+    "fonts": "cp -r ./fonts dist/fonts"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
