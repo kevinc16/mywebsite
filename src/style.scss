@@ -103,6 +103,25 @@ body {
   display: flex;
 }
 
+// ===== tut =====
+
+#hint {
+  font-family: "Courier New", Courier, monospace;
+  // color: white;
+  position: fixed;
+  // left: 50%;
+  // transform: translate(-50%, 0);
+  bottom: 0;
+  font-size: 15px;
+  padding: 10px;
+  margin: 5px;
+  border: #9effff 2px solid;
+  background-color: #c4ffff;
+  border-radius: 10px;
+  
+  user-select: none; /* Standard */
+}
+
 // ============= links ===================
 
 a:link {
