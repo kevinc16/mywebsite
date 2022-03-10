@@ -122,6 +122,19 @@ body {
   user-select: none; /* Standard */
 }
 
+// ===== controls =====
+
+#up {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 15px;
+  padding: 10px;
+  margin: 5px;
+  font-family: "Courier New", Courier, monospace;
+}
+
 // ============= links ===================
 
 a:link {
