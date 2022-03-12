@@ -31,73 +31,73 @@ body {
   color: white;
 }
 
-#desc {
-  margin-top: 20px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  user-select: none;
+// #desc {
+//   margin-top: 20px;
+//   left: 50%;
+//   transform: translate(-50%, 0);
+//   user-select: none;
 
-  font-size: 50px;
-  font-style: italic;
-}
+//   font-size: 50px;
+//   font-style: italic;
+// }
 
-#cc {
-  font-family: "Courier New", Courier, monospace;
-  color: white;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
-  bottom: 0;
-  font-size: 15px;
-}
+// #cc {
+//   font-family: "Courier New", Courier, monospace;
+//   color: white;
+//   position: fixed;
+//   left: 50%;
+//   transform: translate(-50%, 0);
+//   bottom: 0;
+//   font-size: 15px;
+// }
 
-#aboutMe {
-  font-family: $textFont;
-  max-width: 20%;
-  padding: 10px;
-  margin: 20px;
-  right: 0;
-  font-size: 20px;
+// #aboutMe {
+//   font-family: $textFont;
+//   max-width: 20%;
+//   padding: 10px;
+//   margin: 20px;
+//   right: 0;
+//   font-size: 20px;
 
-  height: 50%;
-  background-color: $backColor;
-}
+//   height: 50%;
+//   background-color: $backColor;
+// }
 
-#projects {
-  font-family: $textFont;
-  max-width: 20%;
-  padding: 10px;
-  margin: 20px;
-  left: 0;
-  font-size: 20px;
+// #projects {
+//   font-family: $textFont;
+//   max-width: 20%;
+//   padding: 10px;
+//   margin: 20px;
+//   left: 0;
+//   font-size: 20px;
 
-  height: 50%;
-  background-color: $backColor;
-}
+//   height: 50%;
+//   background-color: $backColor;
+// }
 
-#contact {
-  font-family: $textFont;
-  width: 20%;
-  padding: 10px;
-  margin: 20px;
-  right: 0;
-  bottom: 0;
-  font-size: 30px;
+// #contact {
+//   font-family: $textFont;
+//   width: 20%;
+//   padding: 10px;
+//   margin: 20px;
+//   right: 0;
+//   bottom: 0;
+//   font-size: 30px;
 
-  max-height: 20%;
-  background-color: $backColor;
+//   max-height: 20%;
+//   background-color: $backColor;
 
-  .flex {
-    justify-content: space-evenly;
-    border-top: 1px solid white;
-    padding-top: 10px;
-  }
+//   .flex {
+//     justify-content: space-evenly;
+//     border-top: 1px solid white;
+//     padding-top: 10px;
+//   }
 
-  div {
-    font-size: 20px;
-    margin: 10px;
-  }
-}
+//   div {
+//     font-size: 20px;
+//     margin: 10px;
+//   }
+// }
 
 .flex {
   display: flex;
@@ -124,15 +124,38 @@ body {
 
 // ===== controls =====
 
-#up {
-  position: fixed;
-  top: 0;
+#my-nav-bar {
   left: 50%;
   transform: translate(-50%, 0);
+
+  display: flex;
+  position: fixed;
+  top: 0;
+}
+
+.my-nav-links {
   font-size: 15px;
   padding: 10px;
   margin: 5px;
   font-family: "Courier New", Courier, monospace;
+  
+  cursor: pointer;
+
+  border: #9effff 2px solid;
+  background-color: #c4ffff;
+  border-radius: 10px;
+}
+
+#about-me {
+  
+}
+
+#projects {
+  
+}
+
+#contacts {
+  
 }
 
 // ============= links ===================
