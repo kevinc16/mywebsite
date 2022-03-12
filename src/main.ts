@@ -239,17 +239,17 @@ function main() {
 
   // ===== events =====
 
-  const projects = document.getElementById("projects");
+  const projects = document.getElementById("projects-link");
   projects!.onclick = (e: MouseEvent) => {
     cameraControls.rotateTo( 0 , 180 * THREE.MathUtils.DEG2RAD, true );
   }
 
-  const aboutMe = document.getElementById("about-me");
+  const aboutMe = document.getElementById("about-me-link");
   aboutMe!.onclick = (e: MouseEvent) => {
     cameraControls.rotateTo( 0 , -180 * THREE.MathUtils.DEG2RAD, true );
   }
 
-  const contacts = document.getElementById("contacts");
+  const contacts = document.getElementById("contacts-link");
   contacts!.onclick = (e: MouseEvent) => {
     cameraControls.rotateTo( Math.PI/2, 90 * THREE.MathUtils.DEG2RAD, true );
   }
