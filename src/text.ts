@@ -10,6 +10,7 @@ export function addText(
   position: Vector3,
   rotation: Vector3,
   doubleText: boolean,
+  opacity: number,
   message: string
 ) {
   let lineText: THREE.Object3D<THREE.Event>;
@@ -25,7 +26,7 @@ export function addText(
     const matLite = new THREE.MeshBasicMaterial({
       color: color,
       transparent: true,
-      opacity: 0.4,
+      opacity: opacity,
       side: THREE.DoubleSide,
     });
 
@@ -71,7 +72,6 @@ export function addText(
       }
     }
 
-    group = new THREE.Group();
     group.add(text);
     if(lineText) group.add(lineText);
     group.position.x = position.x;
