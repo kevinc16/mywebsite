@@ -41,15 +41,18 @@ body {
   font-style: italic;
 }
 
-#aboutMe {
+#about-me {
   font-family: $textFont;
-  max-width: 20%;
+  max-width: 10%;
   padding: 10px;
   margin: 20px;
-  right: 0;
+  left: 0;
+
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   font-size: 20px;
 
-  height: 50%;
   background-color: $backColor;
 }
 
@@ -58,16 +61,28 @@ body {
   max-width: 20%;
   padding: 10px;
   margin: 20px;
-  left: 0;
-  font-size: 20px;
+  right: 0;
+  font-size: 25px;
 
-  height: 50%;
   background-color: $backColor;
+
+  div {
+    margin-top: 15px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    margin: 7.5px;
+  }
+
+
 }
 
 #contact {
   font-family: $textFont;
-  width: 20%;
+  max-width: 20%;
   padding: 10px;
   margin: 20px;
   right: 0;

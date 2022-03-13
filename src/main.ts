@@ -271,7 +271,6 @@ function main() {
 
     // scene.environment = pmremGenerator.fromScene( sky ).texture;
   }
-
   updateSun();
 
   // ===== stars =====
@@ -347,26 +346,32 @@ function main() {
   const projects = document.getElementById("projects-link");
   projects!.onclick = (e: MouseEvent) => {
     // helps with less rotations in angle
-    if (cameraControls.azimuthAngle > 0)
-      cameraControls.rotateTo( Math.PI , 90 * THREE.MathUtils.DEG2RAD, true );
-    else
-      cameraControls.rotateTo( -Math.PI , 90 * THREE.MathUtils.DEG2RAD, true );
+    // if (cameraControls.azimuthAngle > 0)
+    //   cameraControls.rotateTo( Math.PI , 90 * THREE.MathUtils.DEG2RAD, true );
+    // else
+    //   cameraControls.rotateTo( -Math.PI , 90 * THREE.MathUtils.DEG2RAD, true );
+    const projects = document.getElementById("projects");
+    projects!.classList.toggle("hidden");
   }
-
+  
   const aboutMe = document.getElementById("about-me-link");
   aboutMe!.onclick = (e: MouseEvent) => {
-    if (cameraControls.azimuthAngle < Math.PI/2)
-      cameraControls.rotateTo( -Math.PI/2 , 90 * THREE.MathUtils.DEG2RAD, true );
-    else
-      cameraControls.rotateTo( Math.PI*3/2 , 90 * THREE.MathUtils.DEG2RAD, true );
+    // if (cameraControls.azimuthAngle < Math.PI/2)
+    //   cameraControls.rotateTo( -Math.PI/2 , 90 * THREE.MathUtils.DEG2RAD, true );
+    // else
+    //   cameraControls.rotateTo( Math.PI*3/2 , 90 * THREE.MathUtils.DEG2RAD, true );
+    const aboutMe = document.getElementById("about-me");
+    aboutMe!.classList.toggle("hidden");
   }
 
   const contacts = document.getElementById("contacts-link");
   contacts!.onclick = (e: MouseEvent) => {
-    if (cameraControls.azimuthAngle > -Math.PI/2)
-      cameraControls.rotateTo( Math.PI/2 , 90 * THREE.MathUtils.DEG2RAD, true );
-    else
-      cameraControls.rotateTo( -Math.PI*3/2 , 90 * THREE.MathUtils.DEG2RAD, true );
+    // if (cameraControls.azimuthAngle > -Math.PI/2)
+    //   cameraControls.rotateTo( Math.PI/2 , 90 * THREE.MathUtils.DEG2RAD, true );
+    // else
+    //   cameraControls.rotateTo( -Math.PI*3/2 , 90 * THREE.MathUtils.DEG2RAD, true );
+    const contact = document.getElementById("contact");
+    contact!.classList.toggle("hidden");
   }
 
   // ============== animate ================
