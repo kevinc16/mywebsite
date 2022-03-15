@@ -1,78 +1,35 @@
 import * as THREE from "three";
+import { CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer";
 
-export function addStars(scene: THREE.Scene, stars: any[]) {
-  // top
-  const color = 0xeeeeee;
-  for ( var y = 100; y < 1000; y += 10 ) {
-    var geometry   = new THREE.SphereGeometry(0.5, 32, 32)
-    var material = new THREE.MeshBasicMaterial( {color: color} );
-    var sphere = new THREE.Mesh(geometry, material)
+export function addStars(scene: THREE.Scene) {
+  const stars = document.getElementById("stars");
+  const starsCSS = new CSS3DObject( stars! );
+  starsCSS.scale.multiplyScalar(2);
+  
+  const upStars = starsCSS.clone();
+  upStars.position.y = 900;
+  upStars.rotation.x = Math.PI/2;
+  scene.add(upStars);
 
-    sphere.position.x = Math.random() * 1000 - 500;
-    sphere.position.y = y;
-    sphere.position.z = Math.random() * 1000 - 500;;
+  const downStars = starsCSS.clone();
+  downStars.position.y = -900;
+  downStars.rotation.x = Math.PI/2;
+  scene.add(downStars);
 
-    stars.push(sphere);
-  }
-  // right
-  for ( var y = 100; y < 1000; y += 10 ) {
-    var geometry   = new THREE.SphereGeometry(0.5, 32, 32)
-    var material = new THREE.MeshBasicMaterial( {color: color} );
-    var sphere = new THREE.Mesh(geometry, material)
+  const frontStars = starsCSS.clone();
+  frontStars.position.z = 1000;
+  scene.add(frontStars);
 
-    sphere.position.x = y;
-    sphere.position.y = Math.random() * 1000;
-    sphere.position.z = Math.random() * 1000 - 500;
+  const leftStars = starsCSS.clone();
+  leftStars.position.x = 1000;
+  leftStars.rotation.y = Math.PI/2;
+  scene.add(leftStars);
 
-    stars.push(sphere);
-  }
-  // left
-  for ( var y = -100; y > -1000; y -= 10 ) {
-    var geometry   = new THREE.SphereGeometry(0.5, 32, 32)
-    var material = new THREE.MeshBasicMaterial( {color: color} );
-    var sphere = new THREE.Mesh(geometry, material)
+  const rightStars = starsCSS.clone();
+  rightStars.position.x = -1000;
+  rightStars.rotation.y = Math.PI/2;
+  scene.add(rightStars);
 
-    sphere.position.x = y;
-    sphere.position.y = Math.random() * 1000;
-    sphere.position.z = Math.random() * 1000 - 500;
-
-    stars.push(sphere);
-  }
-  // front
-  for ( var y = 100; y < 1000; y += 10 ) {
-    var geometry   = new THREE.SphereGeometry(0.5, 32, 32)
-    var material = new THREE.MeshBasicMaterial( {color: color} );
-    var sphere = new THREE.Mesh(geometry, material)
-
-    sphere.position.x = Math.random() * 1000 - 500;
-    sphere.position.y = Math.random() * 1000;
-    sphere.position.z = y
-
-    stars.push(sphere);
-  }
-  // back
-  for ( var y = -100; y > -1000; y -= 10 ) {
-    var geometry   = new THREE.SphereGeometry(0.5, 32, 32)
-    var material = new THREE.MeshBasicMaterial( {color: 0xffffff} );
-    var sphere = new THREE.Mesh(geometry, material)
-
-    sphere.position.x = Math.random() * 1000 - 500;
-    sphere.position.y = Math.random() * 1000;
-    sphere.position.z = y
-
-    stars.push(sphere);
-  }
-}
-
-export function addStarsToScene(scene: THREE.Scene, stars: any[]) {
-  stars.map((star) => {
-    scene.add(star);
-  })
-}
-
-export function removeStarsFromScene(scene: THREE.Scene, stars: any[]) {
-  stars.map((star) => {
-    scene.remove(star);
-  })
-  stars = [];
+  starsCSS.position.z = -1000;
+  scene.add(starsCSS);
 }

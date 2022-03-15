@@ -3,10 +3,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+
+  background-color: #000000;
 }
 
 $backColor: #9370db;
 $textFont: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+$width: 250px;
+$height: 200px;
+
+@mixin verticalCenter {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  left: 0;
+}
+
+@mixin cardSize {
+  width: $width;
+  height: $height;
+  padding: 10px;
+  margin: 20px;
+}
 
 canvas {
   outline: none;
@@ -22,6 +41,10 @@ body {
   height: 100%;
 }
 
+#my-nav-bar {
+  z-index: 2;
+}
+
 .hidden {
   display: none;
 }
@@ -29,67 +52,79 @@ body {
 .floating {
   position: fixed;
   color: white;
+
+  user-select: none;
+  z-index: 1;
+
+  border: black 1px solid;
 }
 
 #desc {
-  margin-top: 20px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  user-select: none;
-
+  @include cardSize;
+  
   font-size: 50px;
   font-style: italic;
-}
-
-#about-me {
-  font-family: $textFont;
-  max-width: 10%;
-  padding: 10px;
-  margin: 20px;
-  left: 0;
-
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  font-size: 20px;
-
-  background-color: $backColor;
-}
-
-#projects {
-  font-family: $textFont;
-  max-width: 20%;
-  padding: 10px;
-  margin: 20px;
-  right: 0;
-  font-size: 25px;
 
   background-color: $backColor;
 
   div {
+    @include verticalCenter;
+    margin-right: 10px;
+  }
+}
+
+#about-me {
+  @include cardSize;
+  
+  font-family: $textFont;
+  font-size: 20px;
+  
+  background-color: $backColor;
+  
+  div {
+    @include verticalCenter;
+    margin: 0 10px;
+  }
+}
+
+#projects {
+  @include cardSize;
+
+  font-family: $textFont;
+  font-size: 25px;
+
+  background-color: $backColor;
+
+  margin-bottom: 7.5px;
+
+  div {
     margin-top: 15px;
     font-size: 20px;
-    display: flex;
-    flex-direction: column;
+  }
+
+  p {
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: white 1px solid;
+  }
+
+  ul {
+    margin-top: 15px;
+    text-align: left;
+    list-style-position: inside;
   }
 
   a {
     margin: 7.5px;
   }
-
-
 }
 
 #contact {
+  @include cardSize;
+
   font-family: $textFont;
-  max-width: 20%;
-  padding: 10px;
-  margin: 20px;
-  right: 0;
-  bottom: 0;
   font-size: 30px;
 
-  max-height: 20%;
   background-color: $backColor;
 
   .flex {
@@ -104,18 +139,34 @@ body {
   }
 }
 
+.v-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 88%;
+}
+
 .flex {
   display: flex;
+}
+
+#top {
+  @include cardSize;
+  background-color: $backColor;
+  height: 250px;
+}
+
+#bot {
+  @include cardSize;
+  background-color: $backColor;
+  height: 250px;
 }
 
 // ===== tut =====
 
 #hint {
   font-family: "Courier New", Courier, monospace;
-  // color: white;
   position: fixed;
-  // left: 50%;
-  // transform: translate(-50%, 0);
   bottom: 0;
   font-size: 15px;
   padding: 10px;
@@ -124,7 +175,7 @@ body {
   background-color: #c4ffff;
   border-radius: 10px;
   
-  user-select: none; /* Standard */
+  user-select: none;
 }
 
 // ===== controls =====
@@ -267,4 +318,57 @@ a:hover {
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+// iframe
+iframe {
+  height: 85%;
+  width: 60%;
+  border: white 5px solid;
+}
+
+// stars 
+
+.stars, .twinkling, .clouds, #stars {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.stars {
+  background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+  z-index:0;
+}
+
+.twinkling{
+  background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+  z-index:1;
+
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
 }
