@@ -5,10 +5,14 @@
   text-align: center;
 
   background-color: #000000;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+
 }
 
 $backColor: #9370db;
-$textFont: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+// $textFont: 'Poppins', sans-serif;
+$textFont: 'Montserrat', sans-serif;
 $width: 250px;
 $height: 200px;
 
@@ -99,7 +103,7 @@ body {
 
   div {
     margin-top: 15px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   p {
@@ -112,6 +116,10 @@ body {
     margin-top: 15px;
     text-align: left;
     list-style-position: inside;
+  }
+
+  li {
+    margin: 3px;
   }
 
   a {
@@ -153,13 +161,22 @@ body {
 #top {
   @include cardSize;
   background-color: $backColor;
-  height: 250px;
+  height: 246px;
+  width: calc($width - 4px);
+
+  background-image: url("assets/meow.JPG");
+  background-size: contain;
+  border: white 1px solid;
+  color: white;
+  font-size: 20px;
 }
 
 #bot {
   @include cardSize;
   background-color: $backColor;
   height: 250px;
+  color: white;
+  font-size: 20px;
 }
 
 // ===== tut =====
@@ -202,18 +219,6 @@ body {
   border-radius: 10px;
 
   user-select: none;
-}
-
-#about-me {
-  
-}
-
-#projects {
-  
-}
-
-#contacts {
-  
 }
 
 // ============= links ===================

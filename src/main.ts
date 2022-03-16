@@ -104,14 +104,14 @@ function init() {
 
   const top = document.getElementById("top");
   const topCSS = new CSS3DObject( top! );
-  topCSS.position.y = distance - 25;
+  topCSS.position.y = distance - 26;
   topCSS.rotation.x = -Math.PI/2;
   scene.add(topCSS);
 
   const down = document.getElementById("bot");
   const downCSS = new CSS3DObject( down! );
   downCSS.position.y = -(distance - 25);
-  downCSS.rotation.x = -Math.PI/2;
+  downCSS.rotation.x = Math.PI/2;
   scene.add(downCSS);
 
   const pathfinder = document.getElementById("pathfinder");
@@ -125,8 +125,10 @@ function init() {
   const links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
     links[i].onclick = (e) => {
-      e.preventDefault();
-      window.open(`${e.target}`, '_blank');
+      if (links[i].id !== 'email') {
+        e.preventDefault();
+        window.open(`${e.target}`, '_blank');
+      }
     };
   }
   console.log(links)
