@@ -18,14 +18,12 @@ Z
 */
 
 import { addStars } from "./stars";
-import { rotateAboutPoint } from "./util";
 
 import "./style.scss";
-import { Vector3 } from "three";
 
 // ============= globals =============
 // const rotationRad = 0.0015;
-const bgColor = 0xeeeeee;
+// const bgColor = 0xeeeeee;
 const distance = 135; // in px
 
 // ============== init ===============
@@ -158,7 +156,7 @@ function init() {
   const aboutMeLink = document.getElementById("about-me-link");
   const contactsLink = document.getElementById("contacts-link");
 
-  contactsLink!.onclick = (e: MouseEvent) => {
+  contactsLink!.onclick = () => {
     // helps with less rotations in angle
     if (controls.azimuthAngle > 0)
       controls.rotateTo( Math.PI , 90 * THREE.MathUtils.DEG2RAD, true );
@@ -166,14 +164,14 @@ function init() {
       controls.rotateTo( -Math.PI , 90 * THREE.MathUtils.DEG2RAD, true );
   }
 
-  projectsLink!.onclick = (e: MouseEvent) => {
+  projectsLink!.onclick = () => {
     if (controls.azimuthAngle < Math.PI/2)
       controls.rotateTo( -Math.PI/2 , 90 * THREE.MathUtils.DEG2RAD, true );
     else
       controls.rotateTo( Math.PI*3/2 , 90 * THREE.MathUtils.DEG2RAD, true );
   }
 
-  aboutMeLink!.onclick = (e: MouseEvent) => {
+  aboutMeLink!.onclick = () => {
     if (controls.azimuthAngle > -Math.PI/2)
       controls.rotateTo( Math.PI/2 , 90 * THREE.MathUtils.DEG2RAD, true );
     else
@@ -196,7 +194,7 @@ function init() {
 
   gltfloader.load(
     "assets/sunrise/scene.gltf",
-    function (gltf) {
+    function () {
       // do nothing
     },
     undefined,
