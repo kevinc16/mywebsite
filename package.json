@@ -6,7 +6,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "deploy": "yarn build && yarn assets && yarn fonts && gh-pages -d dist",
-    "assets": "cp -r ./assets dist/assets",
+    "assets": "cp -r ./assets dist/static/assets",
     "fonts": "cp -r ./fonts dist/fonts"
   },
   "dependencies": {
